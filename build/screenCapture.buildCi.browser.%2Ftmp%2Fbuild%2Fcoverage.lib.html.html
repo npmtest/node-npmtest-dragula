@@ -1,0 +1,2050 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-dragula/node_modules/dragula/dragula.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-dragula">npmtest-dragula (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-dragula/node_modules/dragula/dragula.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">13.27% <small>(56 / 422)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 287)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 54)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">14.36% <small>(56 / 390)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> » <a href="index.html">node-npmtest-dragula/node_modules/dragula/</a> » dragula.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var emitter = require('contra/emitter');
+var crossvent = require('crossvent');
+<span class="cstat-no" title="statement not covered">var classes = require('./classes');</span>
+<span class="cstat-no" title="statement not covered">var doc = document;</span>
+<span class="cstat-no" title="statement not covered">var documentElement = doc.documentElement;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered">function dragula (initialContainers, options) {</span>
+<span class="cstat-no" title="statement not covered">  var len = arguments.length;</span>
+<span class="cstat-no" title="statement not covered">  if (len === 1 &amp;&amp; Array.isArray(initialContainers) === false) {</span>
+<span class="cstat-no" title="statement not covered">    options = initialContainers;</span>
+<span class="cstat-no" title="statement not covered">    initialContainers = [];</span>
+  }
+<span class="cstat-no" title="statement not covered">  var _mirror; </span>// mirror image
+<span class="cstat-no" title="statement not covered">  var _source; </span>// source container
+<span class="cstat-no" title="statement not covered">  var _item; </span>// item being dragged
+<span class="cstat-no" title="statement not covered">  var _offsetX; </span>// reference x
+<span class="cstat-no" title="statement not covered">  var _offsetY; </span>// reference y
+<span class="cstat-no" title="statement not covered">  var _moveX; </span>// reference move x
+<span class="cstat-no" title="statement not covered">  var _moveY; </span>// reference move y
+<span class="cstat-no" title="statement not covered">  var _initialSibling; </span>// reference sibling when grabbed
+<span class="cstat-no" title="statement not covered">  var _currentSibling; </span>// reference sibling now
+<span class="cstat-no" title="statement not covered">  var _copy; </span>// item used for copying
+<span class="cstat-no" title="statement not covered">  var _renderTimer; </span>// timer for setTimeout renderMirrorImage
+<span class="cstat-no" title="statement not covered">  var _lastDropTarget = null; </span>// last container item was over
+<span class="cstat-no" title="statement not covered">  var _grabbed; </span>// holds mousedown context until first mousemove
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var o = options || {};</span>
+<span class="cstat-no" title="statement not covered">  if (o.moves === void 0) { <span class="cstat-no" title="statement not covered">o.moves = always; </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (o.accepts === void 0) { <span class="cstat-no" title="statement not covered">o.accepts = always; </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (o.invalid === void 0) { <span class="cstat-no" title="statement not covered">o.invalid = invalidTarget; </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (o.containers === void 0) { <span class="cstat-no" title="statement not covered">o.containers = initialContainers || []; </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (o.isContainer === void 0) { <span class="cstat-no" title="statement not covered">o.isContainer = never; </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (o.copy === void 0) { <span class="cstat-no" title="statement not covered">o.copy = false; </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (o.copySortSource === void 0) { <span class="cstat-no" title="statement not covered">o.copySortSource = false; </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (o.revertOnSpill === void 0) { <span class="cstat-no" title="statement not covered">o.revertOnSpill = false; </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (o.removeOnSpill === void 0) { <span class="cstat-no" title="statement not covered">o.removeOnSpill = false; </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (o.direction === void 0) { <span class="cstat-no" title="statement not covered">o.direction = 'vertical'; </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (o.ignoreInputTextSelection === void 0) { <span class="cstat-no" title="statement not covered">o.ignoreInputTextSelection = true; </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (o.mirrorContainer === void 0) { <span class="cstat-no" title="statement not covered">o.mirrorContainer = doc.body; </span>}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var drake = emitter({</span>
+    containers: o.containers,
+    start: manualStart,
+    end: end,
+    cancel: cancel,
+    remove: remove,
+    destroy: destroy,
+    canMove: canMove,
+    dragging: false
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered">  if (o.removeOnSpill === true) {</span>
+<span class="cstat-no" title="statement not covered">    drake.on('over', spillOver).on('out', spillOut);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered">  events();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  return drake;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered">  function isContainer (el) {</span>
+<span class="cstat-no" title="statement not covered">    return drake.containers.indexOf(el) !== -1 || o.isContainer(el);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function events (remove) {</span>
+<span class="cstat-no" title="statement not covered">    var op = remove ? 'remove' : 'add';</span>
+<span class="cstat-no" title="statement not covered">    touchy(documentElement, op, 'mousedown', grab);</span>
+<span class="cstat-no" title="statement not covered">    touchy(documentElement, op, 'mouseup', release);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function eventualMovements (remove) {</span>
+<span class="cstat-no" title="statement not covered">    var op = remove ? 'remove' : 'add';</span>
+<span class="cstat-no" title="statement not covered">    touchy(documentElement, op, 'mousemove', startBecauseMouseMoved);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function movements (remove) {</span>
+<span class="cstat-no" title="statement not covered">    var op = remove ? 'remove' : 'add';</span>
+<span class="cstat-no" title="statement not covered">    crossvent[op](documentElement, 'selectstart', preventGrabbed); </span>// IE8
+<span class="cstat-no" title="statement not covered">    crossvent[op](documentElement, 'click', preventGrabbed);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function destroy () {</span>
+<span class="cstat-no" title="statement not covered">    events(true);</span>
+<span class="cstat-no" title="statement not covered">    release({});</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function preventGrabbed (e) {</span>
+<span class="cstat-no" title="statement not covered">    if (_grabbed) {</span>
+<span class="cstat-no" title="statement not covered">      e.preventDefault();</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function grab (e) {</span>
+<span class="cstat-no" title="statement not covered">    _moveX = e.clientX;</span>
+<span class="cstat-no" title="statement not covered">    _moveY = e.clientY;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var ignore = whichMouseButton(e) !== 1 || e.metaKey || e.ctrlKey;</span>
+<span class="cstat-no" title="statement not covered">    if (ignore) {</span>
+<span class="cstat-no" title="statement not covered">      return; </span>// we only care about honest-to-god left clicks and touch events
+    }
+<span class="cstat-no" title="statement not covered">    var item = e.target;</span>
+<span class="cstat-no" title="statement not covered">    var context = canStart(item);</span>
+<span class="cstat-no" title="statement not covered">    if (!context) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    _grabbed = context;</span>
+<span class="cstat-no" title="statement not covered">    eventualMovements();</span>
+<span class="cstat-no" title="statement not covered">    if (e.type === 'mousedown') {</span>
+<span class="cstat-no" title="statement not covered">      if (isInput(item)) { // see also: https://github.com/bevacqua/dragula/issues/208</span>
+<span class="cstat-no" title="statement not covered">        item.focus(); </span>// fixes https://github.com/bevacqua/dragula/issues/176
+      } else {
+<span class="cstat-no" title="statement not covered">        e.preventDefault(); </span>// fixes https://github.com/bevacqua/dragula/issues/155
+      }
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function startBecauseMouseMoved (e) {</span>
+<span class="cstat-no" title="statement not covered">    if (!_grabbed) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    if (whichMouseButton(e) === 0) {</span>
+<span class="cstat-no" title="statement not covered">      release({});</span>
+<span class="cstat-no" title="statement not covered">      return; </span>// when text is selected on an input and then dragged, mouseup doesn't fire. this is our only hope
+    }
+    // truthy check fixes #239, equality fixes #207
+<span class="cstat-no" title="statement not covered">    if (e.clientX !== void 0 &amp;&amp; e.clientX === _moveX &amp;&amp; e.clientY !== void 0 &amp;&amp; e.clientY === _moveY) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    if (o.ignoreInputTextSelection) {</span>
+<span class="cstat-no" title="statement not covered">      var clientX = getCoord('clientX', e);</span>
+<span class="cstat-no" title="statement not covered">      var clientY = getCoord('clientY', e);</span>
+<span class="cstat-no" title="statement not covered">      var elementBehindCursor = doc.elementFromPoint(clientX, clientY);</span>
+<span class="cstat-no" title="statement not covered">      if (isInput(elementBehindCursor)) {</span>
+<span class="cstat-no" title="statement not covered">        return;</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var grabbed = _grabbed; </span>// call to end() unsets _grabbed
+<span class="cstat-no" title="statement not covered">    eventualMovements(true);</span>
+<span class="cstat-no" title="statement not covered">    movements();</span>
+<span class="cstat-no" title="statement not covered">    end();</span>
+<span class="cstat-no" title="statement not covered">    start(grabbed);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var offset = getOffset(_item);</span>
+<span class="cstat-no" title="statement not covered">    _offsetX = getCoord('pageX', e) - offset.left;</span>
+<span class="cstat-no" title="statement not covered">    _offsetY = getCoord('pageY', e) - offset.top;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    classes.add(_copy || _item, 'gu-transit');</span>
+<span class="cstat-no" title="statement not covered">    renderMirrorImage();</span>
+<span class="cstat-no" title="statement not covered">    drag(e);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function canStart (item) {</span>
+<span class="cstat-no" title="statement not covered">    if (drake.dragging &amp;&amp; _mirror) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    if (isContainer(item)) {</span>
+<span class="cstat-no" title="statement not covered">      return; </span>// don't drag container itself
+    }
+<span class="cstat-no" title="statement not covered">    var handle = item;</span>
+<span class="cstat-no" title="statement not covered">    while (getParent(item) &amp;&amp; isContainer(getParent(item)) === false) {</span>
+<span class="cstat-no" title="statement not covered">      if (o.invalid(item, handle)) {</span>
+<span class="cstat-no" title="statement not covered">        return;</span>
+      }
+<span class="cstat-no" title="statement not covered">      item = getParent(item); </span>// drag target should be a top element
+<span class="cstat-no" title="statement not covered">      if (!item) {</span>
+<span class="cstat-no" title="statement not covered">        return;</span>
+      }
+    }
+<span class="cstat-no" title="statement not covered">    var source = getParent(item);</span>
+<span class="cstat-no" title="statement not covered">    if (!source) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    if (o.invalid(item, handle)) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var movable = o.moves(item, source, handle, nextEl(item));</span>
+<span class="cstat-no" title="statement not covered">    if (!movable) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    return {</span>
+      item: item,
+      source: source
+    };
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function canMove (item) {</span>
+<span class="cstat-no" title="statement not covered">    return !!canStart(item);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function manualStart (item) {</span>
+<span class="cstat-no" title="statement not covered">    var context = canStart(item);</span>
+<span class="cstat-no" title="statement not covered">    if (context) {</span>
+<span class="cstat-no" title="statement not covered">      start(context);</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function start (context) {</span>
+<span class="cstat-no" title="statement not covered">    if (isCopy(context.item, context.source)) {</span>
+<span class="cstat-no" title="statement not covered">      _copy = context.item.cloneNode(true);</span>
+<span class="cstat-no" title="statement not covered">      drake.emit('cloned', _copy, context.item, 'copy');</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered">    _source = context.source;</span>
+<span class="cstat-no" title="statement not covered">    _item = context.item;</span>
+<span class="cstat-no" title="statement not covered">    _initialSibling = _currentSibling = nextEl(context.item);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    drake.dragging = true;</span>
+<span class="cstat-no" title="statement not covered">    drake.emit('drag', _item, _source);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function invalidTarget () {</span>
+<span class="cstat-no" title="statement not covered">    return false;</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function end () {</span>
+<span class="cstat-no" title="statement not covered">    if (!drake.dragging) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    var item = _copy || _item;</span>
+<span class="cstat-no" title="statement not covered">    drop(item, getParent(item));</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function ungrab () {</span>
+<span class="cstat-no" title="statement not covered">    _grabbed = false;</span>
+<span class="cstat-no" title="statement not covered">    eventualMovements(true);</span>
+<span class="cstat-no" title="statement not covered">    movements(true);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function release (e) {</span>
+<span class="cstat-no" title="statement not covered">    ungrab();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    if (!drake.dragging) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    var item = _copy || _item;</span>
+<span class="cstat-no" title="statement not covered">    var clientX = getCoord('clientX', e);</span>
+<span class="cstat-no" title="statement not covered">    var clientY = getCoord('clientY', e);</span>
+<span class="cstat-no" title="statement not covered">    var elementBehindCursor = getElementBehindPoint(_mirror, clientX, clientY);</span>
+<span class="cstat-no" title="statement not covered">    var dropTarget = findDropTarget(elementBehindCursor, clientX, clientY);</span>
+<span class="cstat-no" title="statement not covered">    if (dropTarget &amp;&amp; ((_copy &amp;&amp; o.copySortSource) || (!_copy || dropTarget !== _source))) {</span>
+<span class="cstat-no" title="statement not covered">      drop(item, dropTarget);</span>
+    } else <span class="cstat-no" title="statement not covered">if (o.removeOnSpill) {</span>
+<span class="cstat-no" title="statement not covered">      remove();</span>
+    } else {
+<span class="cstat-no" title="statement not covered">      cancel();</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function drop (item, target) {</span>
+<span class="cstat-no" title="statement not covered">    var parent = getParent(item);</span>
+<span class="cstat-no" title="statement not covered">    if (_copy &amp;&amp; o.copySortSource &amp;&amp; target === _source) {</span>
+<span class="cstat-no" title="statement not covered">      parent.removeChild(_item);</span>
+    }
+<span class="cstat-no" title="statement not covered">    if (isInitialPlacement(target)) {</span>
+<span class="cstat-no" title="statement not covered">      drake.emit('cancel', item, _source, _source);</span>
+    } else {
+<span class="cstat-no" title="statement not covered">      drake.emit('drop', item, target, _source, _currentSibling);</span>
+    }
+<span class="cstat-no" title="statement not covered">    cleanup();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function remove () {</span>
+<span class="cstat-no" title="statement not covered">    if (!drake.dragging) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    var item = _copy || _item;</span>
+<span class="cstat-no" title="statement not covered">    var parent = getParent(item);</span>
+<span class="cstat-no" title="statement not covered">    if (parent) {</span>
+<span class="cstat-no" title="statement not covered">      parent.removeChild(item);</span>
+    }
+<span class="cstat-no" title="statement not covered">    drake.emit(_copy ? 'cancel' : 'remove', item, parent, _source);</span>
+<span class="cstat-no" title="statement not covered">    cleanup();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function cancel (revert) {</span>
+<span class="cstat-no" title="statement not covered">    if (!drake.dragging) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    var reverts = arguments.length &gt; 0 ? revert : o.revertOnSpill;</span>
+<span class="cstat-no" title="statement not covered">    var item = _copy || _item;</span>
+<span class="cstat-no" title="statement not covered">    var parent = getParent(item);</span>
+<span class="cstat-no" title="statement not covered">    var initial = isInitialPlacement(parent);</span>
+<span class="cstat-no" title="statement not covered">    if (initial === false &amp;&amp; reverts) {</span>
+<span class="cstat-no" title="statement not covered">      if (_copy) {</span>
+<span class="cstat-no" title="statement not covered">        if (parent) {</span>
+<span class="cstat-no" title="statement not covered">          parent.removeChild(_copy);</span>
+        }
+      } else {
+<span class="cstat-no" title="statement not covered">        _source.insertBefore(item, _initialSibling);</span>
+      }
+    }
+<span class="cstat-no" title="statement not covered">    if (initial || reverts) {</span>
+<span class="cstat-no" title="statement not covered">      drake.emit('cancel', item, _source, _source);</span>
+    } else {
+<span class="cstat-no" title="statement not covered">      drake.emit('drop', item, parent, _source, _currentSibling);</span>
+    }
+<span class="cstat-no" title="statement not covered">    cleanup();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function cleanup () {</span>
+<span class="cstat-no" title="statement not covered">    var item = _copy || _item;</span>
+<span class="cstat-no" title="statement not covered">    ungrab();</span>
+<span class="cstat-no" title="statement not covered">    removeMirrorImage();</span>
+<span class="cstat-no" title="statement not covered">    if (item) {</span>
+<span class="cstat-no" title="statement not covered">      classes.rm(item, 'gu-transit');</span>
+    }
+<span class="cstat-no" title="statement not covered">    if (_renderTimer) {</span>
+<span class="cstat-no" title="statement not covered">      clearTimeout(_renderTimer);</span>
+    }
+<span class="cstat-no" title="statement not covered">    drake.dragging = false;</span>
+<span class="cstat-no" title="statement not covered">    if (_lastDropTarget) {</span>
+<span class="cstat-no" title="statement not covered">      drake.emit('out', item, _lastDropTarget, _source);</span>
+    }
+<span class="cstat-no" title="statement not covered">    drake.emit('dragend', item);</span>
+<span class="cstat-no" title="statement not covered">    _source = _item = _copy = _initialSibling = _currentSibling = _renderTimer = _lastDropTarget = null;</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function isInitialPlacement (target, s) {</span>
+<span class="cstat-no" title="statement not covered">    var sibling;</span>
+<span class="cstat-no" title="statement not covered">    if (s !== void 0) {</span>
+<span class="cstat-no" title="statement not covered">      sibling = s;</span>
+    } else <span class="cstat-no" title="statement not covered">if (_mirror) {</span>
+<span class="cstat-no" title="statement not covered">      sibling = _currentSibling;</span>
+    } else {
+<span class="cstat-no" title="statement not covered">      sibling = nextEl(_copy || _item);</span>
+    }
+<span class="cstat-no" title="statement not covered">    return target === _source &amp;&amp; sibling === _initialSibling;</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function findDropTarget (elementBehindCursor, clientX, clientY) {</span>
+<span class="cstat-no" title="statement not covered">    var target = elementBehindCursor;</span>
+<span class="cstat-no" title="statement not covered">    while (target &amp;&amp; !accepted()) {</span>
+<span class="cstat-no" title="statement not covered">      target = getParent(target);</span>
+    }
+<span class="cstat-no" title="statement not covered">    return target;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered">    function accepted () {</span>
+<span class="cstat-no" title="statement not covered">      var droppable = isContainer(target);</span>
+<span class="cstat-no" title="statement not covered">      if (droppable === false) {</span>
+<span class="cstat-no" title="statement not covered">        return false;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered">      var immediate = getImmediateChild(target, elementBehindCursor);</span>
+<span class="cstat-no" title="statement not covered">      var reference = getReference(target, immediate, clientX, clientY);</span>
+<span class="cstat-no" title="statement not covered">      var initial = isInitialPlacement(target, reference);</span>
+<span class="cstat-no" title="statement not covered">      if (initial) {</span>
+<span class="cstat-no" title="statement not covered">        return true; </span>// should always be able to drop it right back where it was
+      }
+<span class="cstat-no" title="statement not covered">      return o.accepts(_item, target, _source, reference);</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function drag (e) {</span>
+<span class="cstat-no" title="statement not covered">    if (!_mirror) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    e.preventDefault();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var clientX = getCoord('clientX', e);</span>
+<span class="cstat-no" title="statement not covered">    var clientY = getCoord('clientY', e);</span>
+<span class="cstat-no" title="statement not covered">    var x = clientX - _offsetX;</span>
+<span class="cstat-no" title="statement not covered">    var y = clientY - _offsetY;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    _mirror.style.left = x + 'px';</span>
+<span class="cstat-no" title="statement not covered">    _mirror.style.top = y + 'px';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">    var item = _copy || _item;</span>
+<span class="cstat-no" title="statement not covered">    var elementBehindCursor = getElementBehindPoint(_mirror, clientX, clientY);</span>
+<span class="cstat-no" title="statement not covered">    var dropTarget = findDropTarget(elementBehindCursor, clientX, clientY);</span>
+<span class="cstat-no" title="statement not covered">    var changed = dropTarget !== null &amp;&amp; dropTarget !== _lastDropTarget;</span>
+<span class="cstat-no" title="statement not covered">    if (changed || dropTarget === null) {</span>
+<span class="cstat-no" title="statement not covered">      out();</span>
+<span class="cstat-no" title="statement not covered">      _lastDropTarget = dropTarget;</span>
+<span class="cstat-no" title="statement not covered">      over();</span>
+    }
+<span class="cstat-no" title="statement not covered">    var parent = getParent(item);</span>
+<span class="cstat-no" title="statement not covered">    if (dropTarget === _source &amp;&amp; _copy &amp;&amp; !o.copySortSource) {</span>
+<span class="cstat-no" title="statement not covered">      if (parent) {</span>
+<span class="cstat-no" title="statement not covered">        parent.removeChild(item);</span>
+      }
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    var reference;</span>
+<span class="cstat-no" title="statement not covered">    var immediate = getImmediateChild(dropTarget, elementBehindCursor);</span>
+<span class="cstat-no" title="statement not covered">    if (immediate !== null) {</span>
+<span class="cstat-no" title="statement not covered">      reference = getReference(dropTarget, immediate, clientX, clientY);</span>
+    } else <span class="cstat-no" title="statement not covered">if (o.revertOnSpill === true &amp;&amp; !_copy) {</span>
+<span class="cstat-no" title="statement not covered">      reference = _initialSibling;</span>
+<span class="cstat-no" title="statement not covered">      dropTarget = _source;</span>
+    } else {
+<span class="cstat-no" title="statement not covered">      if (_copy &amp;&amp; parent) {</span>
+<span class="cstat-no" title="statement not covered">        parent.removeChild(item);</span>
+      }
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    if (</span>
+      (reference === null &amp;&amp; changed) ||
+      reference !== item &amp;&amp;
+      reference !== nextEl(item)
+    ) {
+<span class="cstat-no" title="statement not covered">      _currentSibling = reference;</span>
+<span class="cstat-no" title="statement not covered">      dropTarget.insertBefore(item, reference);</span>
+<span class="cstat-no" title="statement not covered">      drake.emit('shadow', item, dropTarget, _source);</span>
+    }
+<span class="fstat-no" title="function not covered">    function moved (type) {</span> <span class="cstat-no" title="statement not covered">drake.emit(type, item, _lastDropTarget, _source); </span>}
+<span class="fstat-no" title="function not covered">    function over () {</span> <span class="cstat-no" title="statement not covered">if (changed) { <span class="cstat-no" title="statement not covered">moved('over'); </span>} </span>}
+<span class="fstat-no" title="function not covered">    function out () {</span> <span class="cstat-no" title="statement not covered">if (_lastDropTarget) { <span class="cstat-no" title="statement not covered">moved('out'); </span>} </span>}
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function spillOver (el) {</span>
+<span class="cstat-no" title="statement not covered">    classes.rm(el, 'gu-hide');</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function spillOut (el) {</span>
+<span class="cstat-no" title="statement not covered">    if (drake.dragging) { <span class="cstat-no" title="statement not covered">classes.add(el, 'gu-hide'); </span>}</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function renderMirrorImage () {</span>
+<span class="cstat-no" title="statement not covered">    if (_mirror) {</span>
+<span class="cstat-no" title="statement not covered">      return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    var rect = _item.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered">    _mirror = _item.cloneNode(true);</span>
+<span class="cstat-no" title="statement not covered">    _mirror.style.width = getRectWidth(rect) + 'px';</span>
+<span class="cstat-no" title="statement not covered">    _mirror.style.height = getRectHeight(rect) + 'px';</span>
+<span class="cstat-no" title="statement not covered">    classes.rm(_mirror, 'gu-transit');</span>
+<span class="cstat-no" title="statement not covered">    classes.add(_mirror, 'gu-mirror');</span>
+<span class="cstat-no" title="statement not covered">    o.mirrorContainer.appendChild(_mirror);</span>
+<span class="cstat-no" title="statement not covered">    touchy(documentElement, 'add', 'mousemove', drag);</span>
+<span class="cstat-no" title="statement not covered">    classes.add(o.mirrorContainer, 'gu-unselectable');</span>
+<span class="cstat-no" title="statement not covered">    drake.emit('cloned', _mirror, _item, 'mirror');</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function removeMirrorImage () {</span>
+<span class="cstat-no" title="statement not covered">    if (_mirror) {</span>
+<span class="cstat-no" title="statement not covered">      classes.rm(o.mirrorContainer, 'gu-unselectable');</span>
+<span class="cstat-no" title="statement not covered">      touchy(documentElement, 'remove', 'mousemove', drag);</span>
+<span class="cstat-no" title="statement not covered">      getParent(_mirror).removeChild(_mirror);</span>
+<span class="cstat-no" title="statement not covered">      _mirror = null;</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function getImmediateChild (dropTarget, target) {</span>
+<span class="cstat-no" title="statement not covered">    var immediate = target;</span>
+<span class="cstat-no" title="statement not covered">    while (immediate !== dropTarget &amp;&amp; getParent(immediate) !== dropTarget) {</span>
+<span class="cstat-no" title="statement not covered">      immediate = getParent(immediate);</span>
+    }
+<span class="cstat-no" title="statement not covered">    if (immediate === documentElement) {</span>
+<span class="cstat-no" title="statement not covered">      return null;</span>
+    }
+<span class="cstat-no" title="statement not covered">    return immediate;</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function getReference (dropTarget, target, x, y) {</span>
+<span class="cstat-no" title="statement not covered">    var horizontal = o.direction === 'horizontal';</span>
+<span class="cstat-no" title="statement not covered">    var reference = target !== dropTarget ? inside() : outside();</span>
+<span class="cstat-no" title="statement not covered">    return reference;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered">    function outside () {</span> // slower, but able to figure out any position
+<span class="cstat-no" title="statement not covered">      var len = dropTarget.children.length;</span>
+<span class="cstat-no" title="statement not covered">      var i;</span>
+<span class="cstat-no" title="statement not covered">      var el;</span>
+<span class="cstat-no" title="statement not covered">      var rect;</span>
+<span class="cstat-no" title="statement not covered">      for (i = 0; i &lt; len; i++) {</span>
+<span class="cstat-no" title="statement not covered">        el = dropTarget.children[i];</span>
+<span class="cstat-no" title="statement not covered">        rect = el.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered">        if (horizontal &amp;&amp; (rect.left + rect.width / 2) &gt; x) { <span class="cstat-no" title="statement not covered">return el; </span>}</span>
+<span class="cstat-no" title="statement not covered">        if (!horizontal &amp;&amp; (rect.top + rect.height / 2) &gt; y) { <span class="cstat-no" title="statement not covered">return el; </span>}</span>
+      }
+<span class="cstat-no" title="statement not covered">      return null;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered">    function inside () {</span> // faster, but only available if dropped inside a child element
+<span class="cstat-no" title="statement not covered">      var rect = target.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered">      if (horizontal) {</span>
+<span class="cstat-no" title="statement not covered">        return resolve(x &gt; rect.left + getRectWidth(rect) / 2);</span>
+      }
+<span class="cstat-no" title="statement not covered">      return resolve(y &gt; rect.top + getRectHeight(rect) / 2);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered">    function resolve (after) {</span>
+<span class="cstat-no" title="statement not covered">      return after ? nextEl(target) : target;</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered">  function isCopy (item, container) {</span>
+<span class="cstat-no" title="statement not covered">    return typeof o.copy === 'boolean' ? o.copy : o.copy(item, container);</span>
+  }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function touchy (el, op, type, fn) {</span>
+<span class="cstat-no" title="statement not covered">  var touch = {</span>
+    mouseup: 'touchend',
+    mousedown: 'touchstart',
+    mousemove: 'touchmove'
+  };
+<span class="cstat-no" title="statement not covered">  var pointers = {</span>
+    mouseup: 'pointerup',
+    mousedown: 'pointerdown',
+    mousemove: 'pointermove'
+  };
+<span class="cstat-no" title="statement not covered">  var microsoft = {</span>
+    mouseup: 'MSPointerUp',
+    mousedown: 'MSPointerDown',
+    mousemove: 'MSPointerMove'
+  };
+<span class="cstat-no" title="statement not covered">  if (global.navigator.pointerEnabled) {</span>
+<span class="cstat-no" title="statement not covered">    crossvent[op](el, pointers[type], fn);</span>
+  } else <span class="cstat-no" title="statement not covered">if (global.navigator.msPointerEnabled) {</span>
+<span class="cstat-no" title="statement not covered">    crossvent[op](el, microsoft[type], fn);</span>
+  } else {
+<span class="cstat-no" title="statement not covered">    crossvent[op](el, touch[type], fn);</span>
+<span class="cstat-no" title="statement not covered">    crossvent[op](el, type, fn);</span>
+  }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function whichMouseButton (e) {</span>
+<span class="cstat-no" title="statement not covered">  if (e.touches !== void 0) { <span class="cstat-no" title="statement not covered">return e.touches.length; </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (e.which !== void 0 &amp;&amp; e.which !== 0) { <span class="cstat-no" title="statement not covered">return e.which; </span>} </span>// see https://github.com/bevacqua/dragula/issues/261
+<span class="cstat-no" title="statement not covered">  if (e.buttons !== void 0) { <span class="cstat-no" title="statement not covered">return e.buttons; </span>}</span>
+<span class="cstat-no" title="statement not covered">  var button = e.button;</span>
+<span class="cstat-no" title="statement not covered">  if (button !== void 0) { // see https://github.com/jquery/jquery/blob/99e8ff1baa7ae341e94bb89c3e84570c7c3ad9ea/src/event.js#L573-L575</span>
+<span class="cstat-no" title="statement not covered">    return button &amp; 1 ? 1 : button &amp; 2 ? 3 : (button &amp; 4 ? 2 : 0);</span>
+  }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function getOffset (el) {</span>
+<span class="cstat-no" title="statement not covered">  var rect = el.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered">  return {</span>
+    left: rect.left + getScroll('scrollLeft', 'pageXOffset'),
+    top: rect.top + getScroll('scrollTop', 'pageYOffset')
+  };
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function getScroll (scrollProp, offsetProp) {</span>
+<span class="cstat-no" title="statement not covered">  if (typeof global[offsetProp] !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered">    return global[offsetProp];</span>
+  }
+<span class="cstat-no" title="statement not covered">  if (documentElement.clientHeight) {</span>
+<span class="cstat-no" title="statement not covered">    return documentElement[scrollProp];</span>
+  }
+<span class="cstat-no" title="statement not covered">  return doc.body[scrollProp];</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function getElementBehindPoint (point, x, y) {</span>
+<span class="cstat-no" title="statement not covered">  var p = point || {};</span>
+<span class="cstat-no" title="statement not covered">  var state = p.className;</span>
+<span class="cstat-no" title="statement not covered">  var el;</span>
+<span class="cstat-no" title="statement not covered">  p.className += ' gu-hide';</span>
+<span class="cstat-no" title="statement not covered">  el = doc.elementFromPoint(x, y);</span>
+<span class="cstat-no" title="statement not covered">  p.className = state;</span>
+<span class="cstat-no" title="statement not covered">  return el;</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function never () {</span> <span class="cstat-no" title="statement not covered">return false; </span>}
+<span class="fstat-no" title="function not covered">function always () {</span> <span class="cstat-no" title="statement not covered">return true; </span>}
+<span class="fstat-no" title="function not covered">function getRectWidth (rect) {</span> <span class="cstat-no" title="statement not covered">return rect.width || (rect.right - rect.left); </span>}
+<span class="fstat-no" title="function not covered">function getRectHeight (rect) {</span> <span class="cstat-no" title="statement not covered">return rect.height || (rect.bottom - rect.top); </span>}
+<span class="fstat-no" title="function not covered">function getParent (el) {</span> <span class="cstat-no" title="statement not covered">return el.parentNode === doc ? null : el.parentNode; </span>}
+<span class="fstat-no" title="function not covered">function isInput (el) {</span> <span class="cstat-no" title="statement not covered">return el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT' || isEditable(el); </span>}
+<span class="fstat-no" title="function not covered">function isEditable (el) {</span>
+<span class="cstat-no" title="statement not covered">  if (!el) { <span class="cstat-no" title="statement not covered">return false; </span>} </span>// no parents were editable
+<span class="cstat-no" title="statement not covered">  if (el.contentEditable === 'false') { <span class="cstat-no" title="statement not covered">return false; </span>} </span>// stop the lookup
+<span class="cstat-no" title="statement not covered">  if (el.contentEditable === 'true') { <span class="cstat-no" title="statement not covered">return true; </span>} </span>// found a contentEditable element in the chain
+<span class="cstat-no" title="statement not covered">  return isEditable(getParent(el)); </span>// contentEditable is set to 'inherit'
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function nextEl (el) {</span>
+<span class="cstat-no" title="statement not covered">  return el.nextElementSibling || manually();</span>
+<span class="fstat-no" title="function not covered">  function manually () {</span>
+<span class="cstat-no" title="statement not covered">    var sibling = el;</span>
+<span class="cstat-no" title="statement not covered">    do {</span>
+<span class="cstat-no" title="statement not covered">      sibling = sibling.nextSibling;</span>
+    } while (sibling &amp;&amp; sibling.nodeType !== 1);
+<span class="cstat-no" title="statement not covered">    return sibling;</span>
+  }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function getEventHost (e) {</span>
+  // on touchend event, we have to use `e.changedTouches`
+  // see http://stackoverflow.com/questions/7192563/touchend-event-properties
+  // see https://github.com/bevacqua/dragula/issues/34
+<span class="cstat-no" title="statement not covered">  if (e.targetTouches &amp;&amp; e.targetTouches.length) {</span>
+<span class="cstat-no" title="statement not covered">    return e.targetTouches[0];</span>
+  }
+<span class="cstat-no" title="statement not covered">  if (e.changedTouches &amp;&amp; e.changedTouches.length) {</span>
+<span class="cstat-no" title="statement not covered">    return e.changedTouches[0];</span>
+  }
+<span class="cstat-no" title="statement not covered">  return e;</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function getCoord (coord, e) {</span>
+<span class="cstat-no" title="statement not covered">  var host = getEventHost(e);</span>
+<span class="cstat-no" title="statement not covered">  var missMap = {</span>
+    pageX: 'clientX', // IE8
+    pageY: 'clientY' // IE8
+  };
+<span class="cstat-no" title="statement not covered">  if (coord in missMap &amp;&amp; !(coord in host) &amp;&amp; missMap[coord] in host) {</span>
+<span class="cstat-no" title="statement not covered">    coord = missMap[coord];</span>
+  }
+<span class="cstat-no" title="statement not covered">  return host[coord];</span>
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered">module.exports = dragula;</span>
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Mon Apr 17 2017 23:59:26 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
