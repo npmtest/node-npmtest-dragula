@@ -1,4 +1,7 @@
-# test coverage for  [dragula (v3.7.2)](https://github.com/bevacqua/dragula)  [![npm package](https://img.shields.io/npm/v/npmtest-dragula.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-dragula) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-dragula.svg)](https://travis-ci.org/npmtest/node-npmtest-dragula)
+# npmtest-dragula
+
+#### basic test coverage for  [dragula (v3.7.2)](https://github.com/bevacqua/dragula)  [![npm package](https://img.shields.io/npm/v/npmtest-dragula.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-dragula) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-dragula.svg)](https://travis-ci.org/npmtest/node-npmtest-dragula)
+
 #### Drag and drop so simple it hurts
 
 [![NPM](https://nodei.co/npm/dragula.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/dragula)
@@ -7,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-dragula/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-dragula/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-dragula/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-dragula/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-dragula/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-dragula/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-dragula/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-dragula/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-dragula/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-dragula/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-dragula/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-dragula/build/coverage.html/index.html)
 
@@ -96,7 +99,8 @@
         "test": "npm run lint && browserify test/*.js | tape-run",
         "test-watch": "hihat test/*.js -p tap-dev-tool"
     },
-    "version": "3.7.2"
+    "version": "3.7.2",
+    "bin": {}
 }
 ```
 
